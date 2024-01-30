@@ -10,7 +10,7 @@ abstract class Car implements Movable{
     private double direction;
 
 
-    public Car(int nrDoors, Color color, int enginePower, String modelName){
+    public Car(int nrDoors, Color color, double enginePower, String modelName){
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
@@ -82,7 +82,7 @@ abstract class Car implements Movable{
         }
     }
 
-    public void update_speed(double new_speed){
+    public void updateSpeed(double new_speed){
         try {
             if (new_speed <= getEnginePower() && new_speed >= 0) {
                 currentSpeed = new_speed;
@@ -114,6 +114,10 @@ abstract class Car implements Movable{
 
     public Position getPosition(){
         return position;
+    }
+
+    public void setPosition(double x, double y){
+        position.set_position(x, y);
     }
 
 }

@@ -26,11 +26,11 @@ public class Saab95 extends Car{
 
     public void incrementSpeed(double amount){
         double new_speed = getCurrentSpeed() + speedFactor() * amount;
-        update_speed(new_speed);
+        updateSpeed(new_speed);
     }
 
     public void decrementSpeed(double amount){
         double new_speed = getCurrentSpeed() - speedFactor() * amount;
-        update_speed(new_speed);
+        updateSpeed(new_speed);
     }
 }

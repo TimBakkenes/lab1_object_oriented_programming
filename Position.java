@@ -19,4 +19,8 @@ public class Position {
         this.x = x_c;
         this.y = y_c;
     }
+
+    public double distance_to_other_position(Position p){
+        return Math.sqrt(Math.pow((x-p.x), 2) + Math.pow(y-p.y, 2));
+    }
 }

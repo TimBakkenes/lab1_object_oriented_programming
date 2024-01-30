@@ -157,7 +157,6 @@ class CarTests {
         saab.setTurboOn();
         assertEquals(125*0.01*1.3, saab.speedFactor());
 
-
         assertEquals(volvo.getEnginePower() * 0.01 * Volvo240.trimFactor, volvo.speedFactor());
     }
 

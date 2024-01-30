@@ -16,12 +16,12 @@ public class Volvo240 extends Car{
 
     public void incrementSpeed(double amount){
 	    double new_speed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
-        update_speed(new_speed);
+        updateSpeed(new_speed);
     }
 
     public void decrementSpeed(double amount){
         double new_speed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
-        update_speed(new_speed);
+        updateSpeed(new_speed);
     }
 
 }
