@@ -5,17 +5,17 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarTransportTest extends Saab95 {
+class VehicleTransportTest extends Saab95 {
 
-    CarTransport carTransportA;
-    CarTransport carTransportB;
-    CarTransport carTransportC;
+    VehicleTransport carTransportA;
+    VehicleTransport carTransportB;
+    VehicleTransport carTransportC;
 
 
     @BeforeEach
     void setUp() {
-        carTransportA = new CarTransport(2, Color.blue, 400, "X1 Ultra", 4);
-        carTransportB = new CarTransport(2, Color.blue, 400, "X1 Ultra", 4);
+        carTransportA = new VehicleTransport(2, Color.blue, 400, "X1 Ultra", 4);
+        carTransportB = new VehicleTransport(2, Color.blue, 400, "X1 Ultra", 4);
 
         carTransportA.pivotUp();
         carTransportB.pivotUp();
@@ -23,7 +23,7 @@ class CarTransportTest extends Saab95 {
         carTransportB.loadCargo(new Saab95());
         carTransportB.loadCargo(new Volvo240());
 
-        carTransportC = new CarTransport(2, Color.blue, 400, "X1 Ultra", 4);
+        carTransportC = new VehicleTransport(2, Color.blue, 400, "X1 Ultra", 4);
     }
 
     @Test
@@ -87,7 +87,7 @@ class CarTransportTest extends Saab95 {
         carTransportA.gas(0.7);
         carTransportA.move();
         carTransportA.move();
-        assertEquals(0, carTransportA.getPosition().distance_to_other_position(saab.getPosition()));
+        assertEquals(0, carTransportA.getPosition().distanceToOtherPosition(saab.getPosition()));
 
     }
 }

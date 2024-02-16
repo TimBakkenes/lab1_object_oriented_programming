@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Truck {
+public class Scania extends TruckI {
 
     public Scania(int nrDoors, Color color, double enginePower, String modelName){
         super(nrDoors, color, enginePower, modelName);
@@ -15,8 +15,8 @@ public class Scania extends Truck {
         double newAngle = getPlatformAngle() + 10;
         // Byt plats på dessa två
         if (newAngle > maxAngle){
-            setPlatformAngle(70);
-        } else if (getCurrentSpeed() > 0) {
+            setPlatformAngle(maxAngle);
+        } else if (getCurrentSpeed() > 0.001) {
             throw new Exception("Can't pivot up while moving");
         } else{
             setPlatformAngle(newAngle);
@@ -32,7 +32,7 @@ public class Scania extends Truck {
 
         if (newAngle < minAngle){
             setPlatformAngle(0);
-        } else if (getCurrentSpeed() > 0){
+        } else if (getCurrentSpeed() > 0.001){
             throw new Exception("Can't pivot down while moving");
         } else {
             setPlatformAngle(newAngle);

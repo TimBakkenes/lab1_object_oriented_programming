@@ -1,3 +1,5 @@
+package WithComposition;
+
 public class Position {
     private double x;
     private double y;
@@ -7,20 +9,20 @@ public class Position {
         this.y = y;
     }
 
-    public double getX() {
+    public double get_x() {
         return x;
     }
 
-    public double getY(){
+    public double get_y(){
         return y;
     }
 
-    public void setPosition(double x_c, double y_c){
+    public void set_position(double x_c, double y_c){
         this.x = x_c;
         this.y = y_c;
     }
 
-    public double distanceToOtherPosition(Position p){
+    public double distance_to_other_position(Position p){
         return Math.sqrt(Math.pow((x-p.x), 2) + Math.pow(y-p.y, 2));
     }
 }

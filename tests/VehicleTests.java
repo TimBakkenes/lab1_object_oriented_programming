@@ -7,7 +7,7 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CarTests {
+class VehicleTests {
 
     private Saab95 saab;
     private Saab95 saab2;
@@ -92,15 +92,15 @@ class CarTests {
     @Test
     void move() {
         Position positionBeforeMove;
-        positionBeforeMove = new Position(saab.getPosition().get_x(), saab.getPosition().get_y());
+        positionBeforeMove = new Position(saab.getPosition().getX(), saab.getPosition().getY());
         saab.startEngine();
 
         saab.move();
-        assertNotEquals(positionBeforeMove.get_x(), saab.getPosition().get_x());
+        assertNotEquals(positionBeforeMove.getX(), saab.getPosition().getX());
 
         saab.turnLeft(180);
         saab.move();
-        assertEquals(positionBeforeMove.get_x(), saab.getPosition().get_x());
+        assertEquals(positionBeforeMove.getX(), saab.getPosition().getX());
 
     }
 
@@ -197,8 +197,8 @@ class CarTests {
 
     @Test
     void getPosition() {
-        assertEquals(0, saab.getPosition().get_x());
-        assertEquals(0, saab.getPosition().get_y());
+        assertEquals(0, saab.getPosition().getX());
+        assertEquals(0, saab.getPosition().getY());
     }
 
     @Test

@@ -1,24 +1,27 @@
+package WithComposition;
+
 import java.awt.*;
 
-abstract class Car implements Movable{
+public class VehicleHelper implements Vehicle{
     private final int nrDoors;
     private final double enginePower;
-    protected double currentSpeed; // Lägga till set current speed till exempel?
+    private double currentSpeed;
     private Color color;
     private final String modelName;
     private Position position;
     private double direction;
 
-
-    public Car(int nrDoors, Color color, double enginePower, String modelName){
+    public VehicleHelper(int nrDoors, double enginePower, Color color, String modelName){
         this.nrDoors = nrDoors;
-        this.color = color;
         this.enginePower = enginePower;
+        this.color = color;
         this.modelName = modelName;
+
         this.position = new Position(0, 0);
         this.direction = 0;
         stopEngine();
     }
+
     public int getNrDoors(){
         return nrDoors;
     }
@@ -33,6 +36,10 @@ abstract class Car implements Movable{
 
     public double getCurrentSpeed(){
         return currentSpeed;
+    }
+
+    public void setCurrentSpeed(double speed){
+        currentSpeed = speed;
     }
 
     public Color getColor(){
@@ -51,16 +58,14 @@ abstract class Car implements Movable{
         currentSpeed = 0;
     }
 
-    abstract double speedFactor();
+    public void incrementSpeed(double amount){}
 
-    abstract void incrementSpeed(double amount);
+    public void decrementSpeed(double amount){}
 
-    abstract void decrementSpeed(double amount);
-
-    public void gas(double amount){
+    public boolean gasCheck(double amount){
         try{
             if (amount >= 0 && amount <= 1){
-                incrementSpeed(amount);
+                return true;
             } else {
                 throw new Exception("Invalid gas input");
             }
@@ -69,11 +74,10 @@ abstract class Car implements Movable{
         }
     }
 
-    // Because gas and break never handles values outside of the range [0,1] gas will never result in a lower speed and vice versa
-    public void brake(double amount){
+    public boolean brakeCheck(double amount){
         try{
             if (amount >= 0 && amount <= 1){
-                decrementSpeed(amount);
+                return true;
             } else {
                 throw new Exception("Invalid brake input");
             }
@@ -82,32 +86,14 @@ abstract class Car implements Movable{
         }
     }
 
-    public void updateSpeed(double new_speed){
-        try {
-            if (new_speed <= getEnginePower() && new_speed >= 0) {
-                currentSpeed = new_speed;
-
-            } else {
-                throw new Exception("Invalid Speed");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void move(){
         position.set_position(position.get_x() + currentSpeed * Math.cos(Math.toRadians(direction)),
-                              position.get_y() + currentSpeed * Math.sin(Math.toRadians(direction)));
-    }
-
-    public double getDirection(){
-        return direction;
+                position.get_y() + currentSpeed * Math.sin(Math.toRadians(direction)));
     }
 
     public void turnLeft(double degrees){
         direction = (direction + degrees) % 360;
     }
-    // Turn radius/angle begränsning
     public void turnRight(double degrees){
         direction = (direction - degrees) % 360;
     }
@@ -116,8 +102,11 @@ abstract class Car implements Movable{
         return position;
     }
 
+    public double getDirection(){
+        return direction;
+    }
+
     public void setPosition(double x, double y){
         position.set_position(x, y);
     }
-
 }
