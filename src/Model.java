@@ -1,10 +1,10 @@
-package WithComposition;
+package src;
 
 
-import WithComposition.Vehicles.Saab95;
-import WithComposition.Vehicles.Scania;
-import WithComposition.Vehicles.Vehicle;
-import WithComposition.Vehicles.Volvo240;
+import src.Vehicles.Saab95;
+import src.Vehicles.Scania;
+import src.Vehicles.Vehicle;
+import src.Vehicles.Volvo240;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package WithComposition;
+package src;
 
 public class CarProgram {
     public static void main(String[] args) {

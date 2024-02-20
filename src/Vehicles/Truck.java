@@ -1,4 +1,4 @@
-package WithComposition.Vehicles;
+package src.Vehicles;
 
 public interface Truck extends Vehicle {
 

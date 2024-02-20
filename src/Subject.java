@@ -1,4 +1,4 @@
-package WithComposition;
+package src;
 
 public interface Subject {
     public void register(Observer obj);

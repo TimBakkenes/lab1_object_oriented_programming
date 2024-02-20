@@ -2,8 +2,8 @@ package WithComposition.Vehicles;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.awt.*;
+import src.Vehicles.Saab95;
+import src.Vehicles.Scania;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,15 +1,15 @@
-package WithComposition.Vehicles;
+package src.Vehicles;
 
 import java.awt.*;
 
-public class Saab95 implements Vehicle {
-    public boolean turboOn;
+public class Volvo240 implements Vehicle {
+
+    public final static double trimFactor = 1.25;
     private final VehicleHelper vehicleHelper;
 
-    public Saab95(){
-        this.vehicleHelper = new VehicleHelper(2, 125, Color.red, "Saab95");
-        this.turboOn = false;
-        this.setImage("pics/Saab95.jpg");
+    public Volvo240(){
+        this.vehicleHelper = new VehicleHelper(4, 100, Color.black, "Volvo240");
+        this.vehicleHelper.setImage("pics/Volvo240.jpg");
         this.vehicleHelper.stopEngine();
     }
 
@@ -17,6 +17,7 @@ public class Saab95 implements Vehicle {
         return vehicleHelper.getImage();
     }
 
+    @Override
     public void setImage(String path) {
         vehicleHelper.setImage(path);
     }
@@ -57,27 +58,17 @@ public class Saab95 implements Vehicle {
         vehicleHelper.stopEngine();
     }
 
-    public void setTurboOn(){
-        turboOn = true;
-    }
-
-    public void setTurboOff(){
-        turboOn = false;
-    }
-
     public double speedFactor(){
-        double turbo = 1;
-        if(turboOn) turbo = 1.3;
-        return this.getEnginePower() * 0.01 * turbo;
+        return getEnginePower() * 0.01 * trimFactor;
     }
 
     public void incrementSpeed(double amount){
-        double new_speed = getCurrentSpeed() + speedFactor() * amount;
+        double new_speed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
         setCurrentSpeed(new_speed);
     }
 
     public void decrementSpeed(double amount){
-        double new_speed = getCurrentSpeed() - speedFactor() * amount;
+        double new_speed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
         setCurrentSpeed(new_speed);
     }
 

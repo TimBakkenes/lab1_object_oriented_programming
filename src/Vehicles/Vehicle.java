@@ -1,6 +1,6 @@
-package WithComposition.Vehicles;
+package src.Vehicles;
 
-import WithComposition.DrawAble;
+import src.DrawAble;
 
 import java.awt.*;
 

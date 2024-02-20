@@ -1,6 +1,6 @@
-package WithComposition.Vehicles;
+package src.Vehicles;
 
-import WithComposition.AutoShop;
+import src.AutoShop;
 
 
 public class TestVarious {

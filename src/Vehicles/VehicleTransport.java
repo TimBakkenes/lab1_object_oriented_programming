@@ -1,13 +1,17 @@
-package WithComposition.Vehicles;
+package src.Vehicles;
 
 import java.awt.*;
+import java.util.Stack;
 
-public class Scania implements Truck {
+public class VehicleTransport implements Truck {
 
+    private final Cargo<Stack<Vehicle>, Integer> cargo;
     private final TruckHelper truckHelper;
 
-    public Scania(){
-        this.truckHelper = new TruckHelper(2, 400, Color.blue, "Scania", 0, 0, 70);
+    public VehicleTransport(int capacity){
+        Stack<Vehicle> cargoType = new Stack<>();
+        this.cargo = new Cargo<>(cargoType, capacity);
+        this.truckHelper = new TruckHelper(2, 500, Color.blue, "VehicleTransport", 0, 0, 70);
         this.truckHelper.stopEngine();
         this.setImage("pics/Scania.jpg");
     }
@@ -49,7 +53,7 @@ public class Scania implements Truck {
     }
 
     public void startEngine(){
-        if (truckHelper.getPlatformAngle() == 0){
+        if (truckHelper.getPlatformAngle() == truckHelper.getMinPlatformAngle()){
             truckHelper.startEngine();
         } else {
             System.out.println("Cannot start engine with platform up");
@@ -61,7 +65,7 @@ public class Scania implements Truck {
     }
 
     public double speedFactor(){
-        return this.getEnginePower()*0.005;
+        return getEnginePower() * 0.01 * ((double) (cargo.capacity - cargo.contents.size() + 1) / cargo.capacity);
     }
 
     public void incrementSpeed(double amount){
@@ -75,7 +79,7 @@ public class Scania implements Truck {
     }
 
     public void gas(double amount){
-        if (truckHelper.getPlatformAngle() == truckHelper.getMinPlatformAngle()){
+        if (truckHelper.getPlatformAngle() == 0){
             if (truckHelper.gasCheck(amount)) {
                 incrementSpeed(amount);
             }
@@ -88,10 +92,6 @@ public class Scania implements Truck {
         if (truckHelper.brakeCheck(amount)) {
             decrementSpeed(amount);
         }
-    }
-
-    public void move(){
-        truckHelper.move();
     }
 
     public void turnLeft(double degrees){
@@ -114,6 +114,52 @@ public class Scania implements Truck {
         truckHelper.setPosition(x, y);
     }
 
+    public void pivotUp(){
+        truckHelper.cargoBed.setPlatformAngle(truckHelper.getMaxPlatformAngle());
+    }
+
+    public void pivotDown(){
+        if (getCurrentSpeed() == 0){
+            truckHelper.cargoBed.setPlatformAngle(truckHelper.getMinPlatformAngle());
+        } else {
+            System.out.println("Cannot lower ramp while driving");
+        }
+    }
+
+    private boolean platformUp() {
+        return truckHelper.getPlatformAngle() == truckHelper.getMaxPlatformAngle();
+    }
+
+    private boolean canLoadCargo(Vehicle vehicle){
+        return platformUp() && cargo.contents.size() < cargo.capacity && !(vehicle instanceof VehicleTransport)
+                && vehicle.getPosition().distanceToOtherPosition(this.getPosition()) < 10;
+    }
+
+    public void loadCargo(Vehicle vehicle){
+        if (canLoadCargo(vehicle)) {
+            Position carTransportPosition = this.getPosition();
+            vehicle.setPosition(carTransportPosition.getX(), carTransportPosition.getY());
+            cargo.contents.push(vehicle);
+        } else {
+            System.out.println("Unable to load cargo now");
+        }
+    }
+
+    public Vehicle unloadCargo(){
+        if (truckHelper.getPlatformAngle() == truckHelper.getMaxPlatformAngle() && getCargoSize() > 0) {
+            Vehicle vehicle = cargo.contents.pop();
+            vehicle.setPosition(this.getPosition().getX() + 5, this.getPosition().getY());
+            return vehicle;
+        } else {
+            System.out.println("Unable to unload cargo now");
+            return null;
+        }
+    }
+
+    public int getCargoSize(){
+        return cargo.contents.size();
+    }
+
     public double getPlatformAngle() {
         return truckHelper.getPlatformAngle();
     }
@@ -122,11 +168,11 @@ public class Scania implements Truck {
         truckHelper.setPlatformAngle(angle);
     }
 
-    public void pivotUp(){
-        truckHelper.pivotUp();
-
-    }
-    public void pivotDown(){
-        truckHelper.pivotDown();
+    public void move(){
+        truckHelper.move();
+        Position carTransportPos = this.getPosition();
+        for (Vehicle vehicle : cargo.contents){
+            vehicle.setPosition(carTransportPos.getX(), carTransportPos.getY());
+        }
     }
 }

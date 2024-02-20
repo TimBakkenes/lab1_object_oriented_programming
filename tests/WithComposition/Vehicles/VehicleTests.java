@@ -4,6 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import src.Vehicles.Position;
+import src.Vehicles.Saab95;
+import src.Vehicles.Volvo240;
 
 import java.awt.*;
 

@@ -1,4 +1,4 @@
-package WithComposition.Vehicles;
+package src.Vehicles;
 
 public class Position {
     private double x;

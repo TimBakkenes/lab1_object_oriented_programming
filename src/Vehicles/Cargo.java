@@ -1,4 +1,4 @@
-package WithComposition.Vehicles;
+package src.Vehicles;
 
 public class Cargo<T, R> {
 

@@ -1,4 +1,4 @@
-package WithComposition;
+package src;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

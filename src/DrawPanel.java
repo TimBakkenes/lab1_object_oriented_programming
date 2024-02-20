@@ -1,7 +1,4 @@
-package WithComposition;
-
-import WithComposition.Vehicles.Vehicle;
-import WithComposition.Vehicles.Volvo240;
+package src;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
