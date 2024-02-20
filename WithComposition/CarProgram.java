@@ -5,6 +5,7 @@ public class CarProgram {
         Model model = new Model();
         View view = new View(model);
         model.register(view);
+
         new Controller(view, model);
 
         model.startTimer();

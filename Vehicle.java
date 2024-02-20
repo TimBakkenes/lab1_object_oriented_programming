@@ -1,6 +1,6 @@
 import java.awt.*;
 
-abstract class Vehicle implements Movable{
+abstract class Vehicle implements TestBilverkstad.Movable {
     private final int nrDoors;
     private final double enginePower;
     protected double currentSpeed; // Lägga till set current speed till exempel?

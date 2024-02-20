@@ -10,7 +10,7 @@ public class View extends JFrame implements Observer{
 
     public View(Model model){
         this.model = model;
-        this.drawPanel = new DrawPanel(model.dimensions.width, model.dimensions.height-240, model.cars, model.autoShops);
+        this.drawPanel = new DrawPanel(model.dimensions.width, model.dimensions.height-240, model.components);
         this.add(drawPanel);
         initComponents();
     }

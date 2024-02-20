@@ -1,3 +1,6 @@
+package WithComposition.Vehicles;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +17,8 @@ class VehicleTransportTest extends Saab95 {
 
     @BeforeEach
     void setUp() {
-        carTransportA = new VehicleTransport(2, Color.blue, 400, "X1 Ultra", 4);
-        carTransportB = new VehicleTransport(2, Color.blue, 400, "X1 Ultra", 4);
+        carTransportA = new VehicleTransport(2);
+        carTransportB = new VehicleTransport(2);
 
         carTransportA.pivotUp();
         carTransportB.pivotUp();
@@ -23,7 +26,7 @@ class VehicleTransportTest extends Saab95 {
         carTransportB.loadCargo(new Saab95());
         carTransportB.loadCargo(new Volvo240());
 
-        carTransportC = new VehicleTransport(2, Color.blue, 400, "X1 Ultra", 4);
+        carTransportC = new VehicleTransport(2);
     }
 
     @Test
@@ -46,14 +49,14 @@ class VehicleTransportTest extends Saab95 {
     void pivotUp() {
         carTransportC.pivotDown();
         carTransportC.pivotUp();
-        assertEquals(70, carTransportC.getPlatformAngle());
+        Assertions.assertEquals(70, carTransportC.getPlatformAngle());
     }
 
     @Test
     void pivotDown() {
         carTransportC.pivotUp();
         carTransportC.pivotDown();
-        assertEquals(0, carTransportC.getPlatformAngle());
+        Assertions.assertEquals(0, carTransportC.getPlatformAngle());
     }
 
     @Test

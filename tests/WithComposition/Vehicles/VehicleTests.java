@@ -1,4 +1,7 @@
+package WithComposition.Vehicles;
+
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,14 +62,14 @@ class VehicleTests {
     void startEngine() {
         saab.stopEngine();
         saab.startEngine();
-        assertNotEquals(saab.currentSpeed,0);
+        Assertions.assertNotEquals(saab.getCurrentSpeed(),0);
     }
 
     @Test
     void stopEngine() {
         saab.startEngine();
         saab.stopEngine();
-        assertEquals(saab.currentSpeed,0);
+        Assertions.assertEquals(saab.getCurrentSpeed(),0);
     }
 
     @Test
@@ -86,7 +89,7 @@ class VehicleTests {
 
         saab.decrementSpeed(amount);
         saab2.brake(amount);
-        assertEquals(saab.currentSpeed, saab2.currentSpeed);
+        Assertions.assertEquals(saab.getCurrentSpeed(), saab2.getCurrentSpeed());
     }
 
     @Test
@@ -134,7 +137,7 @@ class VehicleTests {
         saab.setTurboOn();
         saab2.setTurboOff();
         saab.incrementSpeed(amount);
-        saab2.currentSpeed = saab2.getCurrentSpeed() + saab2.speedFactor()*amount;
+        saab2.setCurrentSpeed(saab2.getCurrentSpeed() + saab2.speedFactor()*amount);
         assertNotEquals(saab.getCurrentSpeed(), saab2.getCurrentSpeed());
     }
 
@@ -164,16 +167,16 @@ class VehicleTests {
     void incrementSpeed() {
         int amount = 1;
         saab.incrementSpeed(amount);
-        saab2.currentSpeed = saab2.getCurrentSpeed() + saab2.speedFactor()*amount;
+        saab2.setCurrentSpeed(saab2.getCurrentSpeed() + saab2.speedFactor()*amount);
         assertEquals(saab.getCurrentSpeed(), saab2.getCurrentSpeed());
 
         saab.setTurboOn();
         saab.incrementSpeed(amount);
-        saab2.currentSpeed = saab2.getCurrentSpeed() + saab2.speedFactor()*amount;
+        saab2.setCurrentSpeed(saab2.getCurrentSpeed() + saab2.speedFactor()*amount);
         assertNotEquals(saab.getCurrentSpeed(), saab2.getCurrentSpeed());
 
         volvo.incrementSpeed(amount);
-        volvo2.currentSpeed = volvo2.getCurrentSpeed() + volvo2.speedFactor()*amount;
+        volvo2.setCurrentSpeed(volvo2.getCurrentSpeed() + volvo2.speedFactor()*amount);
         assertEquals(volvo.getCurrentSpeed(), volvo2.getCurrentSpeed());
 
 
@@ -186,12 +189,12 @@ class VehicleTests {
         saab2.incrementSpeed(amount);
 
         saab.decrementSpeed(0.5);
-        saab2.currentSpeed = saab2.getCurrentSpeed() - saab2.speedFactor()*0.5;
+        saab2.setCurrentSpeed(saab2.getCurrentSpeed() - saab2.speedFactor()*0.5);
 
         volvo.incrementSpeed(2*amount);
         volvo2.incrementSpeed(2*amount);
         volvo.decrementSpeed(amount);
-        volvo2.currentSpeed = Math.max(volvo2.getCurrentSpeed() - volvo2.speedFactor() * amount,0);
+        volvo2.setCurrentSpeed(Math.max(volvo2.getCurrentSpeed() - volvo2.speedFactor() * amount,0));
         assertEquals(volvo.getCurrentSpeed(), volvo2.getCurrentSpeed());
     }
 

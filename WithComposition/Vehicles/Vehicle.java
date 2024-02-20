@@ -1,8 +1,10 @@
 package WithComposition.Vehicles;
 
+import WithComposition.DrawAble;
+
 import java.awt.*;
 
-public interface Vehicle extends Movable {
+public interface Vehicle extends Movable, DrawAble {
 
     String getImage();
 

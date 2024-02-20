@@ -17,6 +17,9 @@ public class Model implements Subject{
     ArrayList<Vehicle> cars = new ArrayList<>();
     ArrayList<AutoShop<Volvo240>> autoShops = new ArrayList<>();
 
+    // Maybe not good to have an array of DrawAble objects in the model
+    ArrayList<DrawAble> components = new ArrayList<>();
+
     private final ArrayList<Observer> observers = new ArrayList<>();
 
     private final int delay = 50;
@@ -28,18 +31,24 @@ public class Model implements Subject{
         Volvo240 volvo = new Volvo240();
         volvo.setPosition(0, 320);
         cars.add(volvo);
+        components.add(volvo);
 
         Saab95 saab = new Saab95();
         saab.setPosition(0, 390);
         cars.add(saab);
+        components.add(saab);
 
         Scania scania = new Scania();
         scania.setPosition(0, 200);
         cars.add(scania);
+        components.add(scania);
 
         AutoShop<Volvo240> autoShop = new AutoShop<>(2);
         autoShop.setPosition(300, 300);
         autoShops.add(autoShop);
+        components.add(autoShop);
+
+
     }
 
     void stopAllCars() {
@@ -107,9 +116,10 @@ public class Model implements Subject{
                 car.move();
 
                 for (AutoShop<Volvo240> autoShop : autoShops) {
-                    if (car.getPosition().distanceToOtherPosition(autoShop.pos) < 50 && car instanceof Volvo240) {
+                    if (car.getPosition().distanceToOtherPosition(autoShop.getPosition()) < 50 && car instanceof Volvo240) {
                         autoShop.dropOff((Volvo240) car);
                         cars.remove(car);
+                        components.remove(car);
                     }
                 }
 

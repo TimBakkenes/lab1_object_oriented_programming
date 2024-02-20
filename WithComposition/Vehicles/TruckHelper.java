@@ -40,6 +40,10 @@ public class TruckHelper{
         return cargoBed.getPlatformAngle();
     }
 
+    public void setPlatformAngle(double angle) {
+        cargoBed.setPlatformAngle(angle);
+    }
+
     public double getMaxPlatformAngle() {
         return cargoBed.getMaxAngle();
     }

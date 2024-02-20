@@ -1,3 +1,5 @@
+package WithComposition.Vehicles;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -5,13 +7,13 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ScaniaTest {
+class ScaniaTest extends Saab95 {
 
     Scania truckA;
 
     @BeforeEach
     void setUp() {
-        truckA = new Scania(3, Color.blue, 190, "9000");
+        truckA = new Scania();
     }
 
     @Test

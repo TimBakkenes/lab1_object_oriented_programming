@@ -114,6 +114,14 @@ public class Scania implements Truck {
         truckHelper.setPosition(x, y);
     }
 
+    public double getPlatformAngle() {
+        return truckHelper.getPlatformAngle();
+    }
+
+    public void setPlatformAngle(double angle) {
+        truckHelper.setPlatformAngle(angle);
+    }
+
     public void pivotUp(){
         truckHelper.pivotUp();
 

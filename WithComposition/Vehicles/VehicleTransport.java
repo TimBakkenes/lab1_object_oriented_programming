@@ -160,6 +160,14 @@ public class VehicleTransport implements Truck {
         return cargo.contents.size();
     }
 
+    public double getPlatformAngle() {
+        return truckHelper.getPlatformAngle();
+    }
+
+    public void setPlatformAngle(double angle) {
+        truckHelper.setPlatformAngle(angle);
+    }
+
     public void move(){
         truckHelper.move();
         Position carTransportPos = this.getPosition();
