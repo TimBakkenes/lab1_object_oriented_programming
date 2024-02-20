@@ -46,12 +46,12 @@ public class DrawPanel extends JPanel{
 
 
             for (Vehicle car : cars) {
-                vImage.put(car, ImageIO.read(DrawPanel.class.getResourceAsStream(String.format("pics/%s.jpg", car.getModelName()))));
+                vImage.put(car, ImageIO.read(DrawPanel.class.getResourceAsStream(String.format("WithComposition/pics/%s.jpg", car.getModelName()))));
             }
 
 
             //volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-            volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
+            volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("WithComposition/pics/VolvoBrand.jpg"));
 
             //scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
 

@@ -1,15 +1,17 @@
-package WithComposition;
+package WithComposition.Vehicles;
 
 import java.awt.*;
 
-public class VehicleHelper implements Vehicle{
+public class VehicleHelper implements Vehicle {
     private final int nrDoors;
     private final double enginePower;
     private double currentSpeed;
     private Color color;
     private final String modelName;
-    private Position position;
+    private final Position position;
     private double direction;
+
+    private String image;
 
     public VehicleHelper(int nrDoors, double enginePower, Color color, String modelName){
         this.nrDoors = nrDoors;
@@ -20,6 +22,16 @@ public class VehicleHelper implements Vehicle{
         this.position = new Position(0, 0);
         this.direction = 0;
         stopEngine();
+    }
+
+    @Override
+    public String getImage() {
+        return image;
+    }
+
+    @Override
+    public void setImage(String path) {
+        image = path;
     }
 
     public int getNrDoors(){
@@ -58,10 +70,6 @@ public class VehicleHelper implements Vehicle{
         currentSpeed = 0;
     }
 
-    public void incrementSpeed(double amount){}
-
-    public void decrementSpeed(double amount){}
-
     public boolean gasCheck(double amount){
         try{
             if (amount >= 0 && amount <= 1){
@@ -87,13 +95,14 @@ public class VehicleHelper implements Vehicle{
     }
 
     public void move(){
-        position.set_position(position.get_x() + currentSpeed * Math.cos(Math.toRadians(direction)),
-                position.get_y() + currentSpeed * Math.sin(Math.toRadians(direction)));
+        position.setPosition(position.getX() + currentSpeed * Math.cos(Math.toRadians(direction)),
+                position.getY() + currentSpeed * Math.sin(Math.toRadians(direction)));
     }
 
     public void turnLeft(double degrees){
         direction = (direction + degrees) % 360;
     }
+
     public void turnRight(double degrees){
         direction = (direction - degrees) % 360;
     }
@@ -107,6 +116,10 @@ public class VehicleHelper implements Vehicle{
     }
 
     public void setPosition(double x, double y){
-        position.set_position(x, y);
+        position.setPosition(x, y);
     }
+
+    public void gas(double amount){}
+
+    public void brake(double amount){}
 }

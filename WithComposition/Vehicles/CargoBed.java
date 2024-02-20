@@ -1,4 +1,4 @@
-package WithComposition;
+package WithComposition.Vehicles;
 
 public class CargoBed {
 

@@ -1,6 +1,7 @@
-package WithComposition;
+package WithComposition.Vehicles;
 
 public interface Movable {
+
     public void move();
 
     public void turnLeft(double degrees);

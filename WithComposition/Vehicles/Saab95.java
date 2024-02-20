@@ -1,16 +1,24 @@
-package WithComposition;
+package WithComposition.Vehicles;
 
 import java.awt.*;
 
-public class Scania implements Truck, Vehicle{
-
-    private final CargoBed cargoBed;
+public class Saab95 implements Vehicle {
+    public boolean turboOn;
     private final VehicleHelper vehicleHelper;
 
-    public Scania(){
-        this.vehicleHelper = new VehicleHelper(2, 400, Color.blue, "Scania");
-        this.cargoBed = new CargoBed(0, 0, 70);
+    public Saab95(){
+        this.vehicleHelper = new VehicleHelper(2, 125, Color.red, "Saab95");
+        this.turboOn = false;
+        this.setImage("pics/Saab95.jpg");
         this.vehicleHelper.stopEngine();
+    }
+
+    public String getImage() {
+        return vehicleHelper.getImage();
+    }
+
+    public void setImage(String path) {
+        vehicleHelper.setImage(path);
     }
 
     public int getNrDoors(){
@@ -42,38 +50,40 @@ public class Scania implements Truck, Vehicle{
     }
 
     public void startEngine(){
-        if (cargoBed.getPlatformAngle() == 0){
-            vehicleHelper.startEngine();
-        } else {
-            System.out.println("Cannot start engine with platform up");
-        }
+        vehicleHelper.startEngine();
     }
 
     public void stopEngine(){
         vehicleHelper.stopEngine();
     }
 
+    public void setTurboOn(){
+        turboOn = true;
+    }
+
+    public void setTurboOff(){
+        turboOn = false;
+    }
+
     public double speedFactor(){
-        return this.getEnginePower()*0.005;
+        double turbo = 1;
+        if(turboOn) turbo = 1.3;
+        return this.getEnginePower() * 0.01 * turbo;
     }
 
     public void incrementSpeed(double amount){
-        double new_speed = Math.min(getCurrentSpeed() + speedFactor()*amount, getEnginePower());
+        double new_speed = getCurrentSpeed() + speedFactor() * amount;
         setCurrentSpeed(new_speed);
     }
 
     public void decrementSpeed(double amount){
-        double new_speed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        double new_speed = getCurrentSpeed() - speedFactor() * amount;
         setCurrentSpeed(new_speed);
     }
 
     public void gas(double amount){
-        if (cargoBed.getPlatformAngle() == 0){
-            if (vehicleHelper.gasCheck(amount)) {
-                incrementSpeed(amount);
-            }
-        } else {
-            System.out.println("Cannot gas with ramp up");
+        if (vehicleHelper.gasCheck(amount)) {
+            incrementSpeed(amount);
         }
     }
 
@@ -105,28 +115,5 @@ public class Scania implements Truck, Vehicle{
 
     public void setPosition(double x, double y){
         vehicleHelper.setPosition(x, y);
-    }
-
-    public void pivotUp(){
-        double newAngle = cargoBed.getPlatformAngle() + 10;
-        if (newAngle > cargoBed.getMaxAngle()){
-            cargoBed.setPlatformAngle(cargoBed.getMaxAngle());
-        } else if (getCurrentSpeed() > 0) {
-            System.out.println("Cannot pivot up while moving");
-        } else{
-            cargoBed.setPlatformAngle(newAngle);
-        }
-    }
-
-    public void pivotDown(){
-        double newAngle = cargoBed.getPlatformAngle() - 10;
-
-        if (newAngle < cargoBed.getMinAngle()){
-            cargoBed.setPlatformAngle(cargoBed.getMinAngle());
-        } else if (getCurrentSpeed() > 0){
-            System.out.println("Cannot pivot down while moving");
-        } else {
-            cargoBed.setPlatformAngle(newAngle);
-        }
     }
 }
