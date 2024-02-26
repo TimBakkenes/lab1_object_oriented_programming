@@ -34,14 +34,14 @@ public class CarButtons {
         addVehicleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.addRandomCar();
+                CarAdder.addRandomCar(model);
             }
         });
 
         removeVehicleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.removeLeftmostCar();
+                CarAdder.removeRandomCar(model);
             }
         });
 

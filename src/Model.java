@@ -87,7 +87,6 @@ public class Model implements Subject{
         }
     }
 
-
     void liftBed() {
         for (Vehicle car : cars) {
             if (car instanceof Scania) {
