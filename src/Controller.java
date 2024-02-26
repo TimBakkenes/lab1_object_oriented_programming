@@ -53,7 +53,7 @@ public class Controller {
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
-        controlPanel.setPreferredSize(new Dimension((model.dimensions.width/2)+4, 200));
+        controlPanel.setPreferredSize(new Dimension((model.dimensions.width/3)+4, 200));
         controlPanel.setBackground(Color.CYAN);
         view.add(controlPanel);
 

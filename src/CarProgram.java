@@ -7,6 +7,7 @@ public class CarProgram {
         model.register(view);
 
         new Controller(view, model);
+        new CarButtons(view, model);
 
         model.startTimer();
 
