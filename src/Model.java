@@ -25,7 +25,7 @@ public class Model implements Subject{
     private final int delay = 50;
     private final Timer timer = new Timer(delay, new TimerListener());
 
-    Dimension dimensions = new Dimension(800, 800);
+    Dimension dimensions = new Dimension(1200, 800);
 
     public Model() {
         Volvo240 volvo = new Volvo240();
