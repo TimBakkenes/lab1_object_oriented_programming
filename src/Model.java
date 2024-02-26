@@ -1,10 +1,7 @@
 package src;
 
 
-import src.Vehicles.Saab95;
-import src.Vehicles.Scania;
-import src.Vehicles.Vehicle;
-import src.Vehicles.Volvo240;
+import src.Vehicles.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,18 +25,15 @@ public class Model implements Subject{
     Dimension dimensions = new Dimension(800, 800);
 
     public Model() {
-        Volvo240 volvo = new Volvo240();
-        volvo.setPosition(0, 320);
+        Volvo240 volvo = VehicleFactory.createVolvo240(0, 320);
         cars.add(volvo);
         components.add(volvo);
 
-        Saab95 saab = new Saab95();
-        saab.setPosition(0, 390);
+        Saab95 saab = VehicleFactory.createSaab95(0, 390);
         cars.add(saab);
         components.add(saab);
 
-        Scania scania = new Scania();
-        scania.setPosition(0, 200);
+        Scania scania = VehicleFactory.createScania(0, 200);
         cars.add(scania);
         components.add(scania);
 
