@@ -9,7 +9,7 @@ public class TruckHelper{
 
     public TruckHelper(int nrDoors, double enginePower, Color color, String modelName, double startAngle, double minAngle, double maxAngle) {
         this.vehicleHelper = new VehicleHelper(nrDoors, enginePower, color, modelName);
-        this.cargoBed = new CargoBed(startAngle, minAngle, maxAngle);
+        this.cargoBed = new FlatCargo(startAngle, minAngle, maxAngle);
     }
 
     public String getImage() {

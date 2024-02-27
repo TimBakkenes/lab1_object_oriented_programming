@@ -1,30 +1,12 @@
 package src.Vehicles;
 
-public class CargoBed {
+public interface CargoBed {
 
-    private double platformAngle;
-    private final double maxAngle;
-    private final double minAngle;
+    double getPlatformAngle();
 
-    public CargoBed(double startAngle, double minAngle, double maxAngle){
-        this.platformAngle = startAngle;
-        this.minAngle = minAngle;
-        this.maxAngle = maxAngle;
-    }
+    double getMinAngle();
 
-    public double getPlatformAngle(){
-        return this.platformAngle;
-    }
+    double getMaxAngle();
 
-    public double getMinAngle(){
-        return this.minAngle;
-    }
-
-    public double getMaxAngle(){
-        return this.maxAngle;
-    }
-
-    public void setPlatformAngle(double angle){
-        this.platformAngle = angle;
-    }
+    void setPlatformAngle(double angle);
 }

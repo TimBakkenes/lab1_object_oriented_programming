@@ -10,8 +10,6 @@ public class CarButtons {
     View view;
     Model model;
     JPanel vehiclePanel = new JPanel();
-    // JLabel addVehicleLabel = new JLabel("Add Vehicle");
-
     JButton addVehicleButton = new JButton("Add Vehicle");
     JButton removeVehicleButton = new JButton("Remove Vehicle");
 

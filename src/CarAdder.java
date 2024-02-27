@@ -15,7 +15,7 @@ public class CarAdder {
 
     static void addRandomCar(Model model){
         int cap = model.cars.size();
-        if (cap < 10) {
+        if (cap < 100) {
             Vehicle car = getRandomCar(model.dimensions.width - 100, model.dimensions.height - 240);
             model.cars.add(car);
             model.components.add(car);
